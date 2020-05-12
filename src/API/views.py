@@ -8,7 +8,6 @@ def route(request, token):
     long_url = URL.objects.filter(base62_id=token)[0]
     return redirect(long_url.long_url)
 
-
 def home(request):
     form = URLForm(request.POST)
     b62 = ""
