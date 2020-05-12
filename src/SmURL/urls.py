@@ -21,4 +21,5 @@ from API import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
+    path('<str:token>', views.route, name='route')
 ]

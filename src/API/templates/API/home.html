@@ -6,6 +6,11 @@
     <title>Home</title>
 </head>
 <body>
-    <h1>Home</h1>
+    <form method="post"> {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" name="button" >Get URL</button>
+    </form>
+
+    <h1>localhost:8000/{{ b62 }}</h1>
 </body>
 </html>
