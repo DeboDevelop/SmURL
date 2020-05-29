@@ -7,6 +7,8 @@ from rest_framework.views import APIView
 from .serializers import URLSerializer
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 def route(request, token):
     long_url = URL.objects.filter(base62_id=token)[0]
@@ -35,6 +37,8 @@ def index(request):
     return HttpResponse("Index of the API")
 
 class URLAPIView(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         urls = URL.objects.all()
         serializer = URLSerializer(urls, many=True)
@@ -48,6 +52,8 @@ class URLAPIView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class URLDetail(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
     def get_object(self, pk):
         try:
             return URL.objects.get(pk=pk)
