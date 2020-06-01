@@ -2,18 +2,24 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import URL
 from .forms import URLForm
-from .base62 import encode
+from .base62 import decode
 from rest_framework.views import APIView
 from .serializers import URLSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
+import requests
 
 def route(request, token):
-    print(token)
-    long_url = URL.objects.filter(base62_id=token)[0]
-    return redirect(long_url.long_url)
+    num = decode(token)
+    url = 'http://127.0.0.1:8000/api/urls/' + str(num)
+    resp = requests.get(url=url)
+    if resp.status_code == 200:
+        data = resp.json()
+        return redirect(data["long_url"])
+    else:
+        return render(request, 'API/notFound.html')
 
 def home(request):
     return render(request, 'API/home.html')
@@ -32,10 +38,10 @@ def home(request):
 #             form = URLForm()
 #             b62= "Invalid URL"
 
-    return render(request, 'API/home.html', {'form': form, 'b62': b62})
+    # return render(request, 'API/home.html', {'form': form, 'b62': b62})
 
 def index(request):
-    return HttpResponse("Index of the API")
+    return render(request, 'API/notFound.html')
 
 class URLAPIView(APIView):
     # authentication_classes = [TokenAuthentication]
