@@ -21,8 +21,15 @@
         let input = document.getElementById("input").value
         let response = await fetch('http://127.0.0.1:8000/api/urls')
         let data = await response.json()
+        for (let i=0;i<data.length;i++)
+        {
+            if(data[i].long_url == input)
+            {
+                console.log("http://localhost:8000/"+data[i].base62_id)
+                return;
+            }
+        }
         let index = data.reverse()[0].id
-        console.log(index)
         let token = encode(index+1)
 
         let posting = fetch('http://127.0.0.1:8000/api/urls/', {
@@ -37,9 +44,6 @@
             } 
         })
         console.log("http://localhost:8000/"+token)
-        console.log("Hello")
-        console.log(posting)
-        
     }
     function encode(num) 
     {
