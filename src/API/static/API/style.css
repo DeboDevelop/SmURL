@@ -1,0 +1,45 @@
+#myBody {
+    background-color: #040014;
+}
+
+#nav {
+    height: 50px;
+    font-size: 30px;
+    font-family: Roboto;
+}
+
+.bar {
+    width: 100%;
+}
+
+#myDiv {
+    justify-content: center;
+    width: 513px;
+    margin: 10%;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #2e4a69;
+}
+
+#output {
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+#combo {
+    float: right;
+}
+
+#copy {
+    margin-right: 10px;
+}
+
+#navbar {
+    background-color: #3939ac;
+}
+
+@media only screen and (max-width: 600px) {
+    #myDiv {
+        width: 350px;
+    }
+  }

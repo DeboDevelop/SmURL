@@ -6,60 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">  
+    <link rel="stylesheet" type="text/css" href="{% static 'API/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
-<body>
-    <div>
-        <input type="text" id="input">
-        <button onclick="fill()">Submit</button>
+<body id="myBody">
+    <nav class="navbar navbar-expand-lg navbar-light" id="navbar"> 
+        <span id="nav" class="badge badge-pill badge-dark">SmURL</span>
+    </nav>
+    <div id="myDiv" class="col-md-8 mx-auto">
+        <div>
+            <input type="text" id="input" class="bar">
+            <br>
+            <input type="text" id="output" placeholder="" class="bar">
+            <br>
+            <button onclick="fill()" class="btn btn-danger" id="getLink">Get Link</button>
+            <div id="combo">
+                <button onclick="copyContent()" id="copy" class="btn btn-info">Copy</button>
+                <button onclick="openNewTab()" id="openlink" class="btn btn-info">Open Link</button>
+            </div>
+        </div>
     </div>
 
-    <a href="">localhost:8000/</a>
 </body>
-<script>
-    async function fill()
-    {
-        let input = document.getElementById("input").value
-        let response = await fetch('http://127.0.0.1:8000/api/urls')
-        let data = await response.json()
-        for (let i=0;i<data.length;i++)
-        {
-            if(data[i].long_url == input)
-            {
-                console.log("http://localhost:8000/"+data[i].base62_id)
-                return;
-            }
-        }
-        let index = data.reverse()[0].id
-        let token = encode(index+1)
-
-        let posting = fetch('http://127.0.0.1:8000/api/urls/', {
-            method : "POST",
-            body : JSON.stringify({
-                id: index+1,
-                long_url: input,
-                base62_id: token
-            }),
-            headers: { 
-                "Content-type": "application/json; charset=UTF-8"
-            } 
-        })
-        console.log("http://localhost:8000/"+token)
-    }
-    function encode(num) 
-    {
-        if (num === 0) {
-            return '0';
-        }
-        var digits = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        var len = digits.length, base
-        var result = ''; 
-        while (num > 0) {
-            result = digits[num % len] + result;
-            num = parseInt(num / len, 10);
-        }
-        
-        return result;
-    }
-    
-</script>
+<script src="{% static "API/script.js" %}"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </html>
