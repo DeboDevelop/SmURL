@@ -15,7 +15,7 @@
 #myDiv {
     justify-content: center;
     width: 513px;
-    margin: 10%;
+    margin: 15%;
     padding: 10px;
     border-radius: 10px;
     background-color: #2e4a69;
@@ -41,5 +41,7 @@
 @media only screen and (max-width: 600px) {
     #myDiv {
         width: 350px;
+        position: relative;
+        margin-top: 60%;
     }
-  }
+}
