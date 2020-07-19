@@ -16,19 +16,19 @@ Python 3.6 or above.
 
 1. Create an environment variable
 
-`python3 -m venv env`
+    `python3 -m venv env`
 
 2. Install the Dependencies
 
-`pip install -r requirements.txt`
+    `pip install -r requirements.txt`
 
-or
+    or
 
-`pip3 install -r requirements.txt`
+    `pip3 install -r requirements.txt`
 
 3. Run the Server
 
-`python manage.py runserver`
+    `python manage.py runserver`
 
 4. Open localhost:8000 to open the homepage and use it.
 
