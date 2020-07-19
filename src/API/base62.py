@@ -4,9 +4,12 @@ BASE62 = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 def decode(string, alphabet=BASE62):
     """Decode a Base X encoded string into the number
 
-    Arguments:
-    - `string`: The encoded string
-    - `alphabet`: The alphabet to use for encoding
+    Args:
+        string (str): The encoded string
+        alphabet (str): The alphabet to use for encoding
+
+    Returns:
+        num: The Decoded string
     """
     base = len(alphabet)
     strlen = len(string)
