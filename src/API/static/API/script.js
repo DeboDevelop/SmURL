@@ -45,6 +45,10 @@ async function fill()
     {
         document.getElementById("output").value = "http://" + document.domain + ":" + location.port + "/" + token; 
     }
+    if(posting.status == 400)
+    {
+        document.getElementById("output").value = "400 Bad Request";
+    }
 }
 
 function encode(num) 
