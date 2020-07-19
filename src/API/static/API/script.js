@@ -1,11 +1,17 @@
 document.getElementById("output").placeholder = "http://" + document.domain + ":" + location.port + "/"; 
 
+/**
+ * Open the Url in a new tab 
+ */
 function openNewTab()
 {
     let url = document.getElementById("output").value;
     window.open(url);
 }
 
+/**
+ * Copy the Url into the clipboard
+ */
 function copyContent()
 {
     let copyText = document.getElementById("output");
@@ -14,6 +20,9 @@ function copyContent()
     document.execCommand("copy");
 }
 
+/**
+ * Post the URL using fetch api or fetch the long_url if it's already exist. 
+ */
 async function fill()
 {
     let input = document.getElementById("input").value
@@ -51,7 +60,12 @@ async function fill()
     }
 }
 
-function encode(num) 
+/**
+ * Encode the Given number into base62
+ * @param  {Number} num The number to be encoded.
+ */
+
+function encode(num)
 {
     if (num === 0) {
         return '0';
@@ -63,6 +77,5 @@ function encode(num)
         result = digits[num % len] + result;
         num = parseInt(num / len, 10);
     }
-    
     return result;
 }
