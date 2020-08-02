@@ -36,6 +36,10 @@ Python 3.6 or above.
 
 5. Open localhost:8000 to open the homepage and use it.
 
+## License
+
+This project is licensed under the GPLv3 License - see the [LICENSE.md](LICENSE.md) file for details
+
 ## Author
 
 [Debajyoti Dutta](https://github.com/DeboDevelop)
